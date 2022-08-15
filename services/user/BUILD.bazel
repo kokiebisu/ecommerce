@@ -1,0 +1,17 @@
+load("@rules_python//python:defs.bzl", "py_binary")
+load("@user//:requirements.bzl", "requirement")
+
+py_binary(
+  name = "main",
+  srcs = ["main.py"],
+  deps = [
+    requirement("anyio"),
+    requirement("fastapi"),
+    requirement("idna"),
+    requirement("pydantic"),
+    requirement("sniffio"),
+    requirement("starlette"),
+    requirement("typing_extensions"),
+    requirement("uvicorn")
+  ]
+)
