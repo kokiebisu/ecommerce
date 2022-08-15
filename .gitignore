@@ -2,3 +2,4 @@ ui/node_modules
 bazel-*
 *.pyc
 ui/dist
+.vscode
