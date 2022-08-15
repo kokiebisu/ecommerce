@@ -1,0 +1,19 @@
+version: "3.0" # optional since v1.27.0
+services:
+  user-db:
+    container_name: mysql
+    image: mysql
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./user/dump:/docker-entrypoint-initdb.d
+  session:
+    container_name: redis
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
