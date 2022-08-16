@@ -3,3 +3,4 @@ bazel-*
 *.pyc
 ui/dist
 .vscode
+**/venv
