@@ -2,7 +2,7 @@ import time
 from db.redis import Redis
 import pickle
 
-class SessionStore:
+class SessionRepository:
     def __init__(self, limit:int = 10000000):
         self._conn = Redis.get_conn()
         self._quit = False
@@ -31,6 +31,12 @@ class SessionStore:
         if item:
             self._conn.zadd(f'viewed:{token}', item, timestamp)
             self._conn.zremrangebyrank(f'viewed:{token}', 0, -26)
+
+    def add_to_cart(cls, session, item, count):
+        if count <= 0:
+            cls.db.hrem('cart:' + session, item)
+        else:
+            cls.db.hset('cart:' + session, item, count)
     
     def clean_sessions(self):
         while not self._quit:
