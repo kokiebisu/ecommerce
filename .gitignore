@@ -4,3 +4,6 @@ bazel-*
 ui/dist
 .vscode
 **/*-venv
+
+terraform/.terraform
+terraform/plan.json
