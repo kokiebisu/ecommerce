@@ -1,5 +1,5 @@
 from typing import Any
-from db import MySQLDatabase
+from db.mysql import MySQLDatabase
 from schemas.user import UserSchema
 
 
