@@ -1,16 +1,20 @@
 from typing import Any
-from store import SessionStore
+from repository.session import SessionRepository
 
 
 class SessionService:
-    def __init__(self, store: SessionStore):
-        self._store = store
+    def __init__(self, repository: SessionRepository):
+        self._repository = repository
     
-    def validate_token(self, cookie: str):
-        return self._store.validate_token(cookie)
+    def get_session(self, session: str):
+        if not session:
+            raise Exception('session not provided')
+        return self._repository.get_session(session)
 
-    def update_token(self, cookie: str, data: Any):
-        return self._store.update_token(cookie, data)
+    def update_session(self, session: str, data: Any):
+        if not session:
+            raise Exception('session not provided')
+        return self._repository.update_session(session, data)
         
     def clean_sessions(self):
-        return self._store.clean_sessions()  
+        return self._repository.clean_sessions()

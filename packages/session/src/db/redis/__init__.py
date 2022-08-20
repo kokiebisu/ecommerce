@@ -8,7 +8,7 @@ class Redis:
         return redis.Redis()
 
     @classmethod
-    def get_conn(cls): 
+    def get_db(cls): 
         if not cls._conn:
             cls._conn = cls._initialize_conn()
         return cls._conn
