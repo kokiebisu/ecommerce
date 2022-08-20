@@ -12,3 +12,9 @@ session:
   - packages/session/*
 users:
   - packages/users/*
+workflows:
+  - .github/*
+infra:
+  - terraform/*
+ui:
+  - ui/*
