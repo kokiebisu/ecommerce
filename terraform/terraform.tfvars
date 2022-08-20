@@ -1,0 +1,2 @@
+namespace = "ecommerce"
+profile = "kokiebisu"

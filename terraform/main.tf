@@ -1,3 +1,4 @@
-terraform {
-    required_version = ">= 0.15"
+module "networking" {
+    source = "./modules/networking"
+    namespace = var.namespace
 }
