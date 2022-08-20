@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python
         uses: actions/setup-python@v3
         with:
           python-version: 3.9
@@ -17,5 +17,5 @@ jobs:
           pip install pylint
       - name: Analysing the code with pylint
         run: |
-          cd packages/product/src && PYTHONPATH="." pylint *.py
-        working-directory: .
+          PYTHONPATH="." pylint $(git ls-files '*.py')
+        working-directory: ./packages/product/src
