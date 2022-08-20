@@ -5,4 +5,5 @@ productsRouter = APIRouter()
 
 @productsRouter.get(path="/", response_model=str)
 def hello():
+    """A simple response"""
     return "Hello World"
