@@ -18,3 +18,4 @@ jobs:
       - name: Analysing the code with pylint
         run: |
           cd packages/product/src && PYTHONPATH="." pylint *.py
+        working-directory: .
