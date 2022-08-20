@@ -4,7 +4,7 @@ import pickle
 
 class SessionRepository:
     def __init__(self, limit:int = 10000000):
-        self._conn = Redis.get_conn()
+        self._db = Redis.get_db()
         self._quit = False
         self._limit = limit
 
@@ -40,16 +40,16 @@ class SessionRepository:
     
     def clean_sessions(self):
         while not self._quit:
-            size = self._conn.zcard('recent:')
+            size = self._db.zcard('recent:')
             if size <= self._limit:
                 time.sleep(1000)
                 continue
             end_index = min(size - self._limit, 100)
-            tokens = self._conn.zrange('recent:', 0, end_index-1)
+            sessions = self._db.zrange('recent:', 0, end_index-1)
 
             session_keys = []
-            for token in tokens:
-                session_keys.append(f'viewed:{token}')
-                self._conn.delete(*session_keys)
-                self._conn.hdel('login:', *tokens)
-                self._conn.zrem('recent:', *tokens)
+            for session in sessions:
+                session_keys.append('viewed:' + session)
+                self._db.delete(*session_keys)
+                self._db.hdel('login:', *sessions)
+                self._db.zrem('recent:', *sessions)
