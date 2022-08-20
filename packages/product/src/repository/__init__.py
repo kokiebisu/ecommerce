@@ -1,12 +1,13 @@
-class OrderRepository:
-    def create_order(self):
-        pass
+class ProductRepository:
+    """Handles operation against the products database"""
+    def create_product(self):
+        """Creates the product"""
 
-    def retrieve_order(self):
-        pass
+    def retrieve_product(self):
+        """Retrieves the product"""
 
-    def update_order(self):
-        pass
+    def update_product(self):
+        """Updates the product"""
 
-    def delete_order(self):
-        pass
+    def delete_product(self):
+        """Deletes the product"""
