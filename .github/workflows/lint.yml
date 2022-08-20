@@ -20,4 +20,4 @@ jobs:
           pip install pylint
       - name: Analysing the code with pylint
         run: |
-          cd packages/product/src && PYTHONPATH="./src" pylint .
+          cd packages/product/src && pylint .
