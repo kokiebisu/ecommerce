@@ -1,10 +1,9 @@
 name: "Image Push"
 description: "Push the provided service's docker image"
 inputs:
-  service: # id of input
+  service-name: # id of input
     description: "Name of the service to deploy"
     required: true
-    type: String
 
 runs:
   using: "composite"
