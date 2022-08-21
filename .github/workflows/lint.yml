@@ -19,7 +19,7 @@ jobs:
         run: |
           pip install -r requirements.txt
         working-directory: ./packages/product
-      - name: Analysing the code with pylint
+      - name: Analysing Products services
         run: |
           PYTHONPATH="." pylint $(git ls-files '*.py')
         working-directory: ./packages/product/src

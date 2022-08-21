@@ -26,7 +26,8 @@
 
 name: Deploy to Amazon ECS
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push: main
 
 env:
   AWS_REGION: us-east-1 # set this to your preferred AWS region, e.g. us-west-1
@@ -76,6 +77,7 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        working-directory: ./packages/product
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
