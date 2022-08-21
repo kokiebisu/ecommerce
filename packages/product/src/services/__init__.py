@@ -1,12 +1,13 @@
 class ProductService:
+    """Service to handle products"""
     def list_products(self):
-        pass
+        """Lists products"""
 
     def find_product(self):
-        pass
+        """Finds products"""
 
     def add_product(self):
-        pass
+        """Add a product"""
 
     def remove_product(self):
-        pass
+        """Removes a product"""

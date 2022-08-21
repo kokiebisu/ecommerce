@@ -1,0 +1,20 @@
+authentication:
+  - packages/authentication/*
+cart:
+  - packages/cart/*
+order:
+  - packages/order/*
+payment:
+  - packages/payment/*
+products:
+  - packages/products/*
+session:
+  - packages/session/*
+users:
+  - packages/users/*
+workflows:
+  - .github/*
+infra:
+  - terraform/*
+ui:
+  - ui/*
