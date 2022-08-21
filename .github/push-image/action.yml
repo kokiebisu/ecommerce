@@ -12,17 +12,19 @@ runs:
     - name: Build docker image
       run: |
         docker build -t ecommerce-{{ inputs.service }} .
-      working-directory: packages/{{ inputs.service }}
+      shell: bash
+
+    - name: Show current
+      run: |
+        echo pwd
       shell: bash
 
     - name: Tag docker image
       run: |
         docker tag ecommerce-{{ inputs.service }}:latest public.ecr.aws/m9l9b7f5/ecommerce-{{ inputs.user }}:latest
-      working-directory: packages/{{ inputs.service }}
       shell: bash
 
     - name: Push image to repository
       run: |
         docker push public.ecr.aws/m9l9b7f5/ecommerce-{{ inputs.service }}:latest
-      working-directory: packages/{{ inputs.service }}
       shell: bash
