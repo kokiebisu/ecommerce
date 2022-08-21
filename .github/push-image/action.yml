@@ -10,9 +10,9 @@ runs:
   using: "composite"
   steps:
     - name: Build docker image
-        run: |
-          docker build -t ecommerce-{{ inputs.service }} .
-        working-directory: ./packages/{{ inputs.service }}
+      run: |
+        docker build -t ecommerce-{{ inputs.service }} .
+      working-directory: ./packages/{{ inputs.service }}
 
     - name: Tag docker image
       run: |
