@@ -16,12 +16,12 @@ runs:
 
     - name: Tag docker image
       run: |
-        docker tag ecommerce-${{ inputs.service-name }}:latest public.ecr.aws/m9l9b7f5/ecommerce-${{ inputs.service-name }}:latest
+        docker tag ecommerce-${{ inputs.service-name }}:latest 776733965771.dkr.ecr.us-east-1.amazonaws.com/ecommerce-${{ inputs.service-name }}:latest
       shell: bash
       working-directory: ./packages/${{ inputs.service-name }}
 
     - name: Push image to repository
       run: |
-        docker push public.ecr.aws/m9l9b7f5/ecommerce-${{ inputs.service-name }}:latest
+        docker push 776733965771.dkr.ecr.us-east-1.amazonaws.com/ecommerce-${{ inputs.service-name }}:latest
       shell: bash
       working-directory: ./packages/${{ inputs.service-name }}
