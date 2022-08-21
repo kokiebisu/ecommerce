@@ -27,14 +27,6 @@ resource "aws_ecs_task_definition" "default" {
                     "hostPort": 80
                 }
             ],
-            logConfiguration = {
-                logDriver = "awslogs",
-                options = {
-                    awslogs-region = "us-east-1",
-                    awslogs-group = "stream-to-log-fluentd",
-                    awslogs-stream-prefix = "project"
-                }
-            },
         }
     ])
 }
