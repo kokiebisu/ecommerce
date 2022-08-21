@@ -15,7 +15,7 @@ runs:
 
     - name: Show current
       run: |
-        echo pwd
+        echo $(pwd)
       shell: bash
 
     - name: Tag docker image

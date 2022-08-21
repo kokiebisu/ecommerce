@@ -67,7 +67,6 @@ jobs:
       - uses: ./.github/push-image
         with:
           service-name: product
-        working-directory: ./packages/product
 
       # - name: Build, tag, and push image to Amazon ECR
       #   id: build-image
