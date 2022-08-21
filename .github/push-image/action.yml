@@ -1,0 +1,25 @@
+name: "Image Push"
+description: "Push the provided service's docker image"
+inputs:
+  service: # id of input
+    description: "Name of the service to deploy"
+    required: true
+    type: String
+
+runs:
+  using: "composite"
+  steps:
+    - name: Build docker image
+        run: |
+          docker build -t ecommerce-{{ inputs.service }} .
+        working-directory: ./packages/{{ inputs.service }}
+
+    - name: Tag docker image
+      run: |
+        docker tag ecommerce-{{ inputs.service }}:latest public.ecr.aws/m9l9b7f5/ecommerce-{{ inputs.user }}:latest
+      working-directory: ./packages/{{ inputs.service }}
+
+    - name: Push image to repository
+      run: |
+        docker push public.ecr.aws/m9l9b7f5/ecommerce-{{ inputs.service }}:latest
+      working-directory: ./packages/{{ inputs.service }}
