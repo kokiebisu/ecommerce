@@ -30,7 +30,7 @@ on: [pull_request]
 
 env:
   AWS_REGION: us-east-1 # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: ecommerce # set this to your Amazon ECR repository name
+  ECR_REPOSITORY: ecommerce-product # set this to your Amazon ECR repository name
   ECS_SERVICE: ecommerce-service-products # set this to your Amazon ECS service name
   ECS_CLUSTER: ecommerce-cluster # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION:
@@ -62,7 +62,8 @@ jobs:
 
       - name: Login to Amazon ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+        run: aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/m9l9b7f5
+        # uses: aws-actions/amazon-ecr-login@v1
 
       - name: Build docker image
         run: |
