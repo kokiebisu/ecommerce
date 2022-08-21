@@ -21,6 +21,3 @@ resource "aws_vpc" "default" {
       Name = "${var.namespace}-vpc"
     }
 }
-
-
-
