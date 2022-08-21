@@ -1,7 +1,7 @@
 name: "Image Push"
 description: "Push the provided service's docker image"
 inputs:
-  service-name: # id of input
+  service-name:
     description: "Name of the service to deploy"
     required: true
 
@@ -10,20 +10,15 @@ runs:
   steps:
     - name: Build docker image
       run: |
-        docker build -t ecommerce-{{ inputs.service }} .
-      shell: bash
-
-    - name: Show current
-      run: |
-        echo $(pwd)
+        docker build -t ecommerce-${{ inputs.service-name }} .
       shell: bash
 
     - name: Tag docker image
       run: |
-        docker tag ecommerce-{{ inputs.service }}:latest public.ecr.aws/m9l9b7f5/ecommerce-{{ inputs.user }}:latest
+        docker tag ecommerce-${{ inputs.service-name }}:latest public.ecr.aws/m9l9b7f5/ecommerce-${{ inputs.service-name }}:latest
       shell: bash
 
     - name: Push image to repository
       run: |
-        docker push public.ecr.aws/m9l9b7f5/ecommerce-{{ inputs.service }}:latest
+        docker push public.ecr.aws/m9l9b7f5/ecommerce-${{ inputs.service-name }}:latest
       shell: bash
