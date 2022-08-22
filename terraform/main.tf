@@ -27,5 +27,6 @@ module "api_gateway" {
     source = "./modules/api-gateway"
 
     namespace = var.namespace
+    vpc = module.networking.vpc
     load_balancer_dns_name = module.load_balancer.load_balancer.dns_name
 }
