@@ -12,11 +12,13 @@ resource "aws_ecs_task_definition" "default" {
     requires_compatibilities = [ "FARGATE" ]
     cpu = 256
     memory = 512
+    execution_role_arn = aws_iam_role.ecs-task-execution.arn
+
 
     container_definitions = jsonencode([
         {
    
-            image = "public.ecr.aws/m9l9b7f5/ecommerce-product",
+            image = "776733965771.dkr.ecr.us-east-1.amazonaws.com/ecommerce-product",
             cpu = 256,
             memory = 512,
             name = var.namespace,
@@ -32,7 +34,7 @@ resource "aws_ecs_task_definition" "default" {
 }
 
 resource "aws_ecs_service" "service" {
-    name = "service"
+    name = "ecommerce-product-service"
     cluster = aws_ecs_cluster.default.id
     task_definition = aws_ecs_task_definition.default.arn
     desired_count = 1
