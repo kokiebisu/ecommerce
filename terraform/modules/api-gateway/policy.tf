@@ -4,12 +4,27 @@ resource "aws_api_gateway_rest_api_policy" "ingress_policy" {
   policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
-      {
-        Effect = "Allow",
-        Principal = "*",
-        Action = "execute-api:Invoke",
-        Resource = "arn:aws:execute-api:/*/*/*",
-      }
+        {
+            Effect = "Allow",
+            Principal = "*",
+            Action = "execute-api:Invoke",
+            Resource = [
+                "execute-api:/*"
+            ]
+        },
+        # {
+        #     Effect = "Deny",
+        #     Principal = "*",
+        #     Action = "execute-api:Invoke",
+        #     Resource = [
+        #         "execute-api:/*"
+        #     ],
+        #     Condition = {
+        #         "StringNotEquals": {
+        #            "aws:SourceVpc": var.vpc.id
+        #         }
+        #     }
+        # }
     ]
   })
 }
