@@ -10,7 +10,7 @@ runs:
   steps:
     - name: Build docker image
       run: |
-        docker build -t ecommerce-${{ inputs.service-name }} .
+        docker build --no-cache -t ecommerce-${{ inputs.service-name }} .
       shell: bash
       working-directory: ./packages/${{ inputs.service-name }}
 
