@@ -1,14 +1,14 @@
 package main
 
 import (
+	"log"
+
 	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
 	app := fiber.New()
-	controller := &ProductController{}
-	app.Get("/", controller.getProducts)
-	app.Post("/", controller.addProduct)
+	registerRoute(app)
 
-	app.Listen(":80")
+	log.Fatal(app.Listen(":80"))
 }
