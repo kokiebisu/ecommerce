@@ -2,4 +2,4 @@ start-app:
 	go run main.go
 
 start-server:
-	docker-compose up
+	docker-compose up --build
