@@ -7,7 +7,11 @@ import (
 )
 
 func main() {
-	fmt.Println("Server listening at port 8080...")
+	fmt.Println("Server listening at port 80...")
+
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "hello world from root")
+	})
 
 	http.HandleFunc("/product", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "hello")
