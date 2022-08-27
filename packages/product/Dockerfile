@@ -1,14 +1,13 @@
-FROM python:3.9
+FROM golang:1.16-alpine
 
-WORKDIR /code
+WORKDIR /app
 
-COPY requirements.txt /code/requirements.txt
-COPY ./src ./src
+COPY go.mod ./
 
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
-EXPOSE 80
+RUN go mod download
 
-WORKDIR /code
+COPY src/** ./
 
-ENV PYTHONPATH="./src"
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "80"]
+RUN go build -o /dist
+
+CMD ["/dist"]

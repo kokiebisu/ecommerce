@@ -1,5 +1,5 @@
 start-app:
-	PYTHONPATH="./src" uvicorn src.main:app --reload
+	go run main.go
 
-start-venv:
-	source venv/bin/activate
+start-server:
+	docker-compose up
