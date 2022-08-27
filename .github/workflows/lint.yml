@@ -2,9 +2,9 @@ name: Pylint
 
 on:
   pull_request:
-    path:
-      - packages/session/**
-      - packages/user/**
+    paths:
+      - "packages/session/**"
+      - "packages/user/**"
 
 jobs:
   build:
