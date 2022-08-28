@@ -16,5 +16,15 @@ func (controller *ProductController) getProducts(c *fiber.Ctx) error {
 }
 
 func (controller *ProductController) addProduct(c *fiber.Ctx) error {
-	return c.SendString("POST: Hello World")
+	p := new(Product)
+
+	if err := c.BodyParser(p); err != nil {
+		return err
+	}
+	controller.service.addProduct(*p)
+	return c.SendString("Add Product")
+}
+
+func (controller *ProductController) updateProduct(c *fiber.Ctx) error {
+	return c.SendString("Update Product")
 }
