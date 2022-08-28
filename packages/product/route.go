@@ -8,5 +8,7 @@ func registerRoute(app *fiber.App) {
 		service: service,
 	}
 	app.Get("/", controller.getProducts)
-	app.Post("/", controller.addProduct)
+	app.Post("/:productId", controller.addProduct)
+	app.Put("/:productId", controller.updateProduct)
+	app.Delete("/:productId", controller.deleteProduct)
 }
