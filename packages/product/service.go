@@ -1,18 +1,14 @@
 package main
 
 type ProductService struct {
-	products []Product
+	repository *ProductRepository
 }
 
 func (s *ProductService) retrieveProducts() []Product {
-	return s.products
+	return s.repository.findMany()
 }
 
-func (s *ProductService) retrieveProduct(id int) *Product {
-	for _, item := range s.products {
-		if item.id == id {
-			return &item
-		}
-	}
-	return nil
+func (s *ProductService) retrieveProduct(id int) Product  {
+	product, _ := s.repository.findOne(id)
+	return *product
 }
