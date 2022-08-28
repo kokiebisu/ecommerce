@@ -1,14 +1,8 @@
 package main
 
-import (
-	"log"
-
-	"github.com/gofiber/fiber/v2"
-)
-
 func main() {
-	app := fiber.New()
-	registerRoute(app)
+	bootstrap := &Bootstrap{}
+	bootstrap.Initialize()
 
-	log.Fatal(app.Listen(":80"))
+	bootstrap.Run()
 }

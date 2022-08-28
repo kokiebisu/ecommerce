@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
@@ -12,46 +11,54 @@ type ProductController struct {
 	service *ProductService
 }
 
-
-
-func (controller *ProductController) getProducts(c *fiber.Ctx) error {
-	products := controller.service.retrieveProducts()
+func (controller *ProductController) GetProducts(c *fiber.Ctx) error {
+	products := controller.service.RetrieveProducts()
 	return c.JSON(products)
 }
 
-func (controller *ProductController) addProduct(c *fiber.Ctx) error {
+func (controller *ProductController) GetProduct(c *fiber.Ctx) error {
 	productId := c.Params("productId")
-	p := new(Product)
 
-	if err := c.BodyParser(p); err != nil {
-		return err
+	id, err := strconv.Atoi(productId); 
+	
+	if err != nil {
+		c.SendString("Something went wrong")
 	}
-	controller.service.addProduct(*p)
-	message := "Add Product: " + productId
-	return c.SendString(message)
+
+	product := controller.service.RetrieveProduct(id)
+	return c.JSON(product)
 }
 
-func (controller *ProductController) updateProduct(c *fiber.Ctx) error {
-	productId := c.Params("productId")
-	p := new(Product)
+func (controller *ProductController) AddProduct(c *fiber.Ctx) error {
+	product := new(Product)
 
-	if err := c.BodyParser(p); err != nil {
+	if err := c.BodyParser(product); err != nil {
+		return err
+	}
+	controller.service.AddProduct(product.Name)
+	return c.SendString("Added product")
+}
+
+func (controller *ProductController) UpdateProduct(c *fiber.Ctx) error {
+	productId := c.Params("productId")
+	product := new(Product)
+
+	if err := c.BodyParser(product); err != nil {
 		return err
 	}
 
-	if value, err := strconv.Atoi(productId); err == nil {
-		controller.service.updateProduct(value, *p)
+	if id, err := strconv.Atoi(productId); err == nil {
+		controller.service.UpdateProduct(id, *product)
 		return c.SendString("Update Product")
 	}
 	panic(errors.New("oops"))
 }
 
-func (controller *ProductController) deleteProduct(c *fiber.Ctx) error {
+func (controller *ProductController) DeleteProduct(c *fiber.Ctx) error {
 	productId := c.Params("productId")
 
-	if value, err := strconv.Atoi(productId); err == nil {
-		fmt.Println("entered")
-		controller.service.deleteProduct(value)
+	if id, err := strconv.Atoi(productId); err == nil {
+		controller.service.DeleteProduct(id)
 		return c.SendString("Removed product")
 	}
 

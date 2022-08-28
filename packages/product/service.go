@@ -4,26 +4,32 @@ type ProductService struct {
 	repository *ProductRepository
 }
 
-func (s *ProductService) retrieveProducts() []Product {
-	return s.repository.findMany()
+
+func GetProductService(config *Config) *ProductService {
+	return &ProductService{
+		repository: GetProductRepository(config),
+	}
 }
 
-func (s *ProductService) retrieveProduct(id int) Product  {
-	product, _ := s.repository.findOne(id)
-	return *product
+func (s *ProductService) RetrieveProducts() []Product {
+	return s.repository.FindMany()
 }
 
-func (s *ProductService) addProduct(product Product) bool {
-	s.repository.create(product)
+func (s *ProductService) RetrieveProduct(id int) Product  {
+	return s.repository.FindOne(id)
+}
+
+func (s *ProductService) AddProduct(name string) bool {
+	s.repository.Create(name)
 	return true
 }
 
-func (s *ProductService) updateProduct(productId int, product Product) bool {
-	s.repository.update(productId, product)
+func (s *ProductService) UpdateProduct(productId int, product Product) bool {
+	s.repository.Update(productId, product)
 	return true
 }
 
-func (s *ProductService) deleteProduct(productId int) bool {
-	s.repository.delete(productId)
+func (s *ProductService) DeleteProduct(productId int) bool {
+	s.repository.Delete(productId)
 	return true
 }
