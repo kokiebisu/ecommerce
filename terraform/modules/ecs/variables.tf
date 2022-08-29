@@ -21,3 +21,15 @@ variable load_balancer_target_group {
 variable load_balancer_listener {
   type = any
 }
+
+variable ecr_url {
+  type = string
+}
+
+variable repository_name {
+  type = string
+}
+
+variable "tag" {
+  type = string
+}

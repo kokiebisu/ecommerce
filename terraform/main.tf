@@ -21,6 +21,9 @@ module "ecs" {
     load_balancer_security_group = module.load_balancer.load_balancer_security_group
     load_balancer_target_group = module.load_balancer.load_balancer_target_group
     load_balancer_listener = module.load_balancer.load_balancer_listener
+    ecr_url = "776733965771.dkr.ecr.us-east-1.amazonaws.com"
+    repository_name = "ecommerce-product"
+    tag = "latest"
 }
 
 module "api_gateway" {

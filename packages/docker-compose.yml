@@ -1,7 +1,18 @@
 version: "3.0" # optional since v1.27.0
 services:
   user-db:
-    container_name: mysql
+    container_name: user-db
+    image: mysql
+    ports:
+      - 3307:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./user/dump:/docker-entrypoint-initdb.d
+  product-db:
+    container_name: product-db
     image: mysql
     ports:
       - 3306:3306
@@ -10,7 +21,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
     command: mysqld --default-authentication-plugin=mysql_native_password
     volumes:
-      - ./user/dump:/docker-entrypoint-initdb.d
+      - ./product/dump:/docker-entrypoint-initdb.d
   session:
     container_name: redis
     image: redis

@@ -1,6 +1,10 @@
 name: Pylint
 
-on: [push]
+on:
+  pull_request:
+    paths:
+      - "packages/session/**"
+      - "packages/user/**"
 
 jobs:
   build:

@@ -6,6 +6,11 @@ resource "aws_ecs_cluster" "default" {
     }
 }
 
+data "aws_ecr_image" "app" {
+  repository_name = var.repository_name
+  image_tag       = var.tag
+}
+
 resource "aws_ecs_task_definition" "default" {
     family = "${var.namespace}"
     network_mode = "awsvpc" # tells that an elastic network interface and a private IP address should be assigned to the task
@@ -14,11 +19,10 @@ resource "aws_ecs_task_definition" "default" {
     memory = 512
     execution_role_arn = aws_iam_role.ecs-task-execution.arn
 
-
     container_definitions = jsonencode([
         {
    
-            image = "776733965771.dkr.ecr.us-east-1.amazonaws.com/ecommerce-product",
+            image = "${var.ecr_url}/${var.repository_name}@${data.aws_ecr_image.app.image_digest}",
             cpu = 256,
             memory = 512,
             name = var.namespace,
