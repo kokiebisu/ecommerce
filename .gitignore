@@ -1,3 +1,4 @@
+ui/dist
 ui/node_modules
 bazel-*
 *.pyc
@@ -7,3 +8,4 @@ ui/dist
 
 terraform/.terraform
 terraform/plan.json
+
