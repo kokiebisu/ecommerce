@@ -39,4 +39,7 @@ module "rds" {
 
     namespace = var.namespace
     vpc = module.networking.vpc
+    subnet = module.networking.subnet
+    db_username = "root"
+    db_password = "password"
 }

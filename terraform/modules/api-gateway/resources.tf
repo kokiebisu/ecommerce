@@ -27,23 +27,23 @@ resource "aws_api_gateway_integration" "v1" {
 
 ### /v1/products
 
-resource "aws_api_gateway_resource" "products" {
+resource "aws_api_gateway_resource" "product" {
   rest_api_id = aws_api_gateway_rest_api.default.id
   parent_id = aws_api_gateway_resource.v1.id
   path_part = "products"
 }
 
-resource "aws_api_gateway_method" "products" {
+resource "aws_api_gateway_method" "product" {
   rest_api_id   = aws_api_gateway_rest_api.default.id
-  resource_id   = aws_api_gateway_resource.products.id
+  resource_id   = aws_api_gateway_resource.product.id
   http_method   = "ANY"
   authorization = "NONE"
 }
 
-resource "aws_api_gateway_integration" "products" {
+resource "aws_api_gateway_integration" "product" {
   rest_api_id          = aws_api_gateway_rest_api.default.id
-  resource_id          = aws_api_gateway_resource.products.id
-  http_method          = aws_api_gateway_method.products.http_method
+  resource_id          = aws_api_gateway_resource.product.id
+  http_method          = aws_api_gateway_method.product.http_method
   type                     = "HTTP_PROXY"
   integration_http_method  = "ANY"
   # uri                      = "${format("%s/{proxy}", "${var.load_balancer_url}")}"
