@@ -33,3 +33,13 @@ module "api_gateway" {
     vpc = module.networking.vpc
     load_balancer_dns_name = module.load_balancer.load_balancer.dns_name
 }
+
+module "rds" {
+    source = "./modules/rds"
+
+    namespace = var.namespace
+    vpc = module.networking.vpc
+    subnet = module.networking.subnet
+    db_username = "root"
+    db_password = "password"
+}

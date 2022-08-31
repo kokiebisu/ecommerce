@@ -4,9 +4,9 @@ resource "aws_api_gateway_deployment" "default" {
   depends_on = [
     aws_api_gateway_resource.v1, 
     aws_api_gateway_method.v1,
-    aws_api_gateway_resource.products,
-    aws_api_gateway_method.products,
-    aws_api_gateway_integration.products
+    aws_api_gateway_resource.product,
+    aws_api_gateway_method.product,
+    aws_api_gateway_integration.product
   ]
 
   triggers = {
