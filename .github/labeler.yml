@@ -6,8 +6,8 @@ order:
   - packages/order/*
 payment:
   - packages/payment/*
-products:
-  - packages/products/*
+product:
+  - packages/product/*
 session:
   - packages/session/*
 users:
