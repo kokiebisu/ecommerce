@@ -9,3 +9,5 @@ ui/dist
 terraform/.terraform
 terraform/plan.json
 
+
+**/.env
