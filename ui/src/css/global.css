@@ -1,0 +1,17 @@
+@import "~sanitize.css";
+@import "~sanitize.css/forms.css";
+@import "~sanitize.css/typography.css";
+
+@font-face {
+  font-family: "Airbnb-Cereal";
+  font-style: normal;
+  font-weight: 400;
+  src: local(Airbnb-Cereal),
+    url(../assets/fonts/Airbnb_Cereal-Book.woff2) format("woff2");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Airbnb-Cereal;
+}
